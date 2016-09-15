@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: MZ+xaRZ0oZ4YbmIJ3v0iwG6Do52lRzwY37GdfQe4qJ3lKHB/qEr02k+d2wdwLnZDrYL+9937tFvlbJj8CbazvAOLe9uj80O38AV9h3FOiKsg2SU6Qo9fOVF8WLfwHoDrO3qtFoSm6AytlMi/Jmmq8jU13Tjpwe0wKYd8uwdjtRAEsCEqCm4Y0T9nE8vyhvykh6lfEBgd4dARYR1sapoGhZ7zV686hK2DSlY3/5RMvyAbx1t8xrC6EpeyF/pAcmhRT2Z+VHLS+gpwF5MHtBb+64/knuOJRaAMWbVpQ31VSw9Q4MRCBTBtsYGlmHQaM4oRmCbOK337qr9xbrttmc+TiRswIX/OYo5sbDJWL6S6QGihVSwC6f6R7Gk5Eq1DX4Nw7Yde2ce1gKQT2mi07deLiOxQOvVd2CIoIWkqpnhxI6ntlCTVM9wg2G0PgHmmpL4c6Soyti8E3QRhNVhKY/bXL9mst3LArAibxKoaqFnoiLlghGqx5hBQ518vyWIyob7ruvffWdK67pEQjrltcNmO+x3ufGraEJuGsKN9gzA3scVcLsFQ4Qbzc+magNQfIQ1+SgLMzf0fZhHAcujjjoS7nLvcR/nTbNMbm7c53YPfhG/6+29X6pfSIb4dcth387higaLrsQBgwT+8/uNUiVQ77xJItr/TLoBdiZHilBEEM9M=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/Widger-s-Quotations-from-the-Project-Gutenberg-Editions-of-Dumas-Celebrated-Crimes_3617
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
