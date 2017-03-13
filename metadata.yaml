@@ -1,5 +1,5 @@
 _repo: Widger-s-Quotations-from-the-Project-Gutenberg-Editions-of-Dumas-Celebrated-Crimes_3617
-_version: 0.1.0
+_version: 0.2.0
 contributor:
   creator:
     editor:
@@ -7,6 +7,9 @@ contributor:
       birthdate: 1932
       gutenberg_agent_id: '1961'
       url: http://www.gutenberg.org/2009/agents/1961
+covers:
+- cover_type: generated
+  image_path: cover.png
 creator:
   author:
     agent_name: Dumas, Alexandre
@@ -20,6 +23,8 @@ creator:
     url: http://www.gutenberg.org/2009/agents/492
     wikipedia: http://en.wikipedia.org/wiki/Alexandre_Dumas,_père
 description: ''
+edition_identifiers:
+  edition_id: http://www.gutenberg.org/ebooks/3617#Widger-s-Quotations-from-the-Project-Gutenberg-Editions-of-Dumas-Celebrated-Crimes
 gutenberg_bookshelf:
 - Crime Nonfiction
 - Project Gutenberg
