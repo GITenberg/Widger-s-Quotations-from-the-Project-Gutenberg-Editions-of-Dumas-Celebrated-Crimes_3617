@@ -1,5 +1,5 @@
 _repo: Widger-s-Quotations-from-the-Project-Gutenberg-Editions-of-Dumas-Celebrated-Crimes_3617
-_version: 0.2.0
+_version: 0.2.1
 contributor:
   creator:
     editor:
@@ -39,6 +39,7 @@ rights_url: http://creativecommons.org/about/pdm
 subjects:
 - !lcsh 'Quotations'
 - !lcc 'PQ'
+- GITenberg
 title: Widger's Quotations from the Project Gutenberg Editions of Dumas' Celebrated
   Crimes
 url: http://www.gutenberg.org/ebooks/3617
